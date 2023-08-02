@@ -1,0 +1,35 @@
+/* Custom CSS styles for the navigation bar */
+.navbar {
+  margin-bottom: 20px;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  margin-right: 10px;
+}
+
+.container {  background-color: rgba(255, 255, 255, 0.2);
+
+  margin-top: 50px;
+  text-align: center;
+  background-color: black;
+  
+}
+
+.body {
+  content: center;
+}
+
+.container {
+  background-color: black;
+}
+
+.carousel-item {
+  margin: 30px;
+}
+.navbutton{
+  justify-content: space-between;
+}

@@ -1,0 +1,50 @@
+.container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  #buyTicketsBtn {
+    color: rgb(4, 4, 138);
+    font-size: large;
+    font-weight: bolder;
+    margin: 5px;
+    padding: 14px;
+    border: 2px solid rgb(236, 160, 19);
+    border-radius: 10px;
+  }
+
+  #dateContainer {
+    margin-top: 20px;
+  }
+  
+  .dateBox {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    color: rgb(4, 4, 138);
+    font-weight: bolder;
+    border: 2px solid rgb(236, 160, 19);
+    cursor: pointer;
+    border-radius: 10px;    
+  }
+  
+  #theaterContainer {
+    margin-top: 20px;
+  }
+  
+  .theaterBox {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    color: rgb(4, 4, 138);
+    font-weight: bolder;
+    border: 2px solid rgb(236, 160, 19);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  
