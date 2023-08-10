@@ -20,7 +20,7 @@
 
 <body>
     <?php include 'navbar.php'; ?>
-    <div class="container mt-5 pb-5 pt-5 mt-130" >
+    <div class="container mt-5 pb-5 mt-130" >
         <h2 class="fw-bold pt-5 pb-3">Contact Us</h2>
         <form action="#" method="POST" class="pb-5">
             <div class="row">

@@ -28,7 +28,7 @@
           <p>Ethan Hunt and the IMF team must track down a terrifying new weapon that theatens all of humanity if it falls into the wrong hands.
             With control of the future and the fate of the world at stake, a deadly race around the globe begins.
             Confronted by a mysterious, all-powerful enemy, Ethan is forced to consider that nothing.</p>
-          <p><a href="#" class="btn btn-lg mt-3 button">Book Now</a></p>
+          <p><a href="booking.php" class="btn btn-lg mt-3 button">Book Now</a></p>
         </div>
       </div>
       <div class="carousel-item">
@@ -39,7 +39,7 @@
             With control of the future and the fate of the world at stake, a deadly race around the globe begins.
             Confronted by a mysterious, all-powerful enemy, Ethan is forced to consider that nothing.
           </p>
-          <p><a href="#" class="btn btn-warning btn-lg mt-3">Book Now</a></p>
+          <p><a href="booking.php" class="btn btn-warning btn-lg mt-3">Book Now</a></p>
         </div>
       </div>
       <div class="carousel-item">
@@ -49,7 +49,7 @@
           <p>Ethan Hunt and the IMF team must track down a terrifying new weapon that theatens all of humanity if it falls into the wrong hands.
             With control of the future and the fate of the world at stake, a deadly race around the globe begins.
             Confronted by a mysterious, all-powerful enemy, Ethan is forced to consider that nothing.</p>
-          <p><a href="#" class="btn btn-warning btn-lg mt-3">Book Now</a></p>
+          <p><a href="booking.php" class="btn btn-warning btn-lg mt-3">Book Now</a></p>
         </div>
       </div>
     </div>

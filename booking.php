@@ -15,7 +15,7 @@
 
   <div class="container my-5 pt-5 pb-3">
     <h1 class="my-3 pt-5 pb-3">Movie Booking</h1>
-    <button id="buyTicketsBtn">Buy Tickets</button>
+    <button id="buyTicketsBtn">Book Show</button>
     <div id="dateContainer"></div>
     <div id="theaterContainer"></div>
   </div>

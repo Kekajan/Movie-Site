@@ -14,20 +14,20 @@
 
 <body>
     <?php include 'navbar.php'; ?>
-    <section class="hero pt-5 pb-5">
+    <section class="hero pt-3 pb-3">
         <div class="heading pt-5">
             <h1>Popular Theatres</h1>
 
         </div>
-        <div class="container pt-5">
+        <div class="container">
             <div class="hero-content justify-content-center">
                 <h2>Majestic Cineplex</h2>
                 <p>Welcome to our movie site! We are passionate film enthusiasts dedicated to providing you with the ultimate cinematic experience.
-                    Our mission is to bring the magic of the silver screen right to your fingertips.
+                    Our mission is to bring the magic of the silver.
                 </p>
 
             </div>
-            <div class="carousel pt-5">
+            <div class="carousel pt-3">
                 <div class="carousel-main-image">
                     <img id="mainImage" src="https://media.timeout.com/images/101889423/image.jpg" alt="Big Image">
                 </div>

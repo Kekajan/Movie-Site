@@ -69,7 +69,7 @@ body {
   font-weight: 500;
   font-weight: bold;
 }
-.nav-links ul li::after {
+.nav-link ul li::after {
   content: "";
   width: 0%;
   height: 2px;
@@ -312,6 +312,8 @@ a {
   padding: 70px 0;
   line-height: 1.5;
   font-family: "Poppins", sans-serif;
+  position: sticky;
+  bottom: 0;
 }
 
 .container1 {
@@ -345,16 +347,21 @@ ul {
   position: relative;
 }
 
-.footer-col h4::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  background-color: #e91e63;
-  height: 2px;
-  box-sizing: border-box;
-  /*  new */
-  width: 80px;
+.footer-col h4::before {  
+    content: "";
+    position: absolute;
+    left: 25px;
+    align-self: center;
+    bottom: -10px;
+    background-color: #e91e63;
+    height: 2px;
+    box-sizing: border-box;
+    width: 100px;
+    margin: auto;
+}
+.footer-col1 h4::before {  
+  
+  width: 155px;
   margin: auto;
 }
 
