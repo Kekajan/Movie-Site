@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2023 at 09:53 PM
+-- Generation Time: Aug 11, 2023 at 04:38 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,80 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `cinephile`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin`
---
-
-CREATE TABLE `admin` (
-  `Admin_id` varchar(30) NOT NULL,
-  `Admin_name` varchar(40) NOT NULL,
-  `Admin_type` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Triggers `admin`
---
-DELIMITER $$
-CREATE TRIGGER `getAdmin` BEFORE INSERT ON `admin` FOR EACH ROW BEGIN
-  DECLARE new_admin_id INT;
-  SET new_admin_id = (SELECT COUNT(*) FROM admin WHERE Admin_id LIKE 'CPAd%') + 1;
-  SET NEW.Admin_id = CONCAT('CPAd', LPAD(new_admin_id, 3, '0'));
-END
-$$
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `customer`
---
-
-CREATE TABLE `customer` (
-  `Customer_id` varchar(20) NOT NULL,
-  `Customer_name` varchar(100) NOT NULL,
-  `Customer_NIC` varchar(30) NOT NULL,
-  `CMobile_no` varchar(20) NOT NULL,
-  `CEmail` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Triggers `customer`
---
-DELIMITER $$
-CREATE TRIGGER `getcust` BEFORE INSERT ON `customer` FOR EACH ROW BEGIN
-  DECLARE new_cust_id INT;
-  SET new_cust_id = (SELECT COUNT(*) FROM customer WHERE Customer_id LIKE 'CPCU%') + 1;
-  SET NEW.Customer_id = CONCAT('CPCU', LPAD(new_cust_id, 3, '0'));
-END
-$$
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `moderator`
---
-
-CREATE TABLE `moderator` (
-  `Moderator_id` varchar(30) NOT NULL,
-  `Moderator_name` varchar(40) NOT NULL,
-  `MContact_no` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Triggers `moderator`
---
-DELIMITER $$
-CREATE TRIGGER `getMod` BEFORE INSERT ON `moderator` FOR EACH ROW BEGIN
-  DECLARE new_mod_id INT;
-  SET new_mod_id = (SELECT COUNT(*) FROM moderator WHERE Moderator_id LIKE 'CPMOD%') + 1;
-  SET NEW.Moderator_id = CONCAT('CPMOD', LPAD(new_mod_id, 3, '0'));
-END
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -178,6 +104,7 @@ DELIMITER ;
 
 CREATE TABLE `theatre` (
   `Threatre_id` varchar(30) NOT NULL,
+  `Screen_id` varchar(30) NOT NULL,
   `Threatre_name` varchar(40) NOT NULL,
   `Threatre_City` varchar(40) NOT NULL,
   `Threatre_Location` varchar(60) NOT NULL
@@ -230,7 +157,7 @@ DELIMITER ;
 
 CREATE TABLE `transaction` (
   `Transaction_id` varchar(30) NOT NULL,
-  `Customer_id` varchar(30) NOT NULL,
+  `User_id` varchar(255) NOT NULL,
   `Ticket_no` varchar(30) NOT NULL,
   `Trans_date` date NOT NULL,
   `Total_payment` varchar(40) NOT NULL,
@@ -249,28 +176,65 @@ END
 $$
 DELIMITER ;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `User_id` varchar(255) NOT NULL,
+  `Movie_id` varchar(30) NOT NULL,
+  `Screen_id` varchar(30) NOT NULL,
+  `Show_id` varchar(30) NOT NULL,
+  `Theatre_id` varchar(30) NOT NULL,
+  `Ticket_id` varchar(30) NOT NULL,
+  `Transaction_id` varchar(30) NOT NULL,
+  `User_fname` varchar(255) NOT NULL,
+  `User_lname` varchar(255) NOT NULL,
+  `User_email` varchar(255) NOT NULL,
+  `User_dob` varchar(255) NOT NULL,
+  `User_contactno` varchar(255) NOT NULL,
+  `User_username` varchar(255) NOT NULL,
+  `User_pwd` varchar(255) NOT NULL,
+  `User_type` enum('Admin','User') NOT NULL DEFAULT 'User'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`User_id`, `Movie_id`, `Screen_id`, `Show_id`, `Theatre_id`, `Ticket_id`, `Transaction_id`, `User_fname`, `User_lname`, `User_email`, `User_dob`, `User_contactno`, `User_username`, `User_pwd`, `User_type`) VALUES
+('ADM001', '', '', '', '', '', '', 'Sakuni', 'Kodithuwakku', 'saku1@gmail.com', '2023-08-04', '0713360834', 'SAKU', '$2y$10$LSnXtMPipxEEF7W8v.kQPueaPMjGz0aGDIM4LoS4j7Y6oxsYN.jN6', 'Admin'),
+('CPU001', '', '', '', '', '', '', 'sa', 'gd', 'wda@gns.com', '2023-08-04', '0412233743', 'test', '$2y$10$LmNbMP1kK6.mpuOHDJbzbO9u7MLjfO2JYBGm48kF7diRLauTBQw/O', 'User'),
+('CPU002', '', '', '', '', '', '', 'sa', 'gd', 'wda1@gns.com', '2023-08-13', '0412233743', 'saku', '$2y$10$iWO9ctXW6Jd65cNZJ4eV4uciM7ofleHmOQcXRbOKtFMFvBDGu/CzS', 'User'),
+('CPU003', '', '', '', '', '', '', 'sadss', 'gd', 'wda1wq@gns.com', '2023-08-09', '0412233743', 'Sakuni', '$2y$10$F8CCUFuPxqZIfWHqYmllxOfly3v9MRoBDM7fw0hxGfXIj//FjQvuy', 'User'),
+('CPU004', '', '', '', '', '', '', 'sa', 'gd', 'wda@gns.com', '2023-08-01', '0412233743', 'Sakuni', '$2y$10$Up/cHJIxKeUy.TkpDzNyoO6EeyQpmfPKGLzWvjemI1hskfxVC4myG', 'User'),
+('CPU005', '', '', '', '', '', '', 'Sakuni', 'Kodithuwakku', 'saku@gmail.com', '2023-08-15', '0713360834', 'SaN', '$2y$10$.HlJX0ywq88jLmnZJj9zd.2C.LfqsDnIpDZZEY3Vnk1eFOkpOW9gS', 'User');
+
+--
+-- Triggers `user`
+--
+DELIMITER $$
+CREATE TRIGGER `getAId` BEFORE INSERT ON `user` FOR EACH ROW BEGIN
+    IF NEW.User_type = 'Admin' THEN
+        SET NEW.User_id = CONCAT('ADM', LPAD((SELECT IFNULL(MAX(SUBSTRING(User_id, 3)), 0) + 1 FROM user WHERE User_type = 'Admin'), 3, '0'));
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `getUID` BEFORE INSERT ON `user` FOR EACH ROW BEGIN
+  DECLARE new_uid_id INT;
+  SET new_uid_id = (SELECT COUNT(*) FROM user WHERE User_id LIKE 'CPU%') + 1;
+  SET NEW.User_id = CONCAT('CPU', LPAD(new_uid_id, 3, '0'));
+END
+$$
+DELIMITER ;
+
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`Admin_id`);
-
---
--- Indexes for table `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`Customer_id`),
-  ADD KEY `Customer_name` (`Customer_name`);
-
---
--- Indexes for table `moderator`
---
-ALTER TABLE `moderator`
-  ADD PRIMARY KEY (`Moderator_id`);
 
 --
 -- Indexes for table `movie`
@@ -295,7 +259,8 @@ ALTER TABLE `screen`
 -- Indexes for table `theatre`
 --
 ALTER TABLE `theatre`
-  ADD PRIMARY KEY (`Threatre_id`);
+  ADD PRIMARY KEY (`Threatre_id`),
+  ADD KEY `Screen_id` (`Screen_id`);
 
 --
 -- Indexes for table `tickets`
@@ -309,24 +274,30 @@ ALTER TABLE `tickets`
 --
 ALTER TABLE `transaction`
   ADD PRIMARY KEY (`Transaction_id`),
-  ADD KEY `transaction_FK_1` (`Customer_id`),
-  ADD KEY `transaction_FK_2` (`Ticket_no`);
+  ADD KEY `transaction_FK_2` (`Ticket_no`),
+  ADD KEY `User_id` (`User_id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`User_id`);
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `customer`
---
-ALTER TABLE `customer`
-  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`Customer_name`) REFERENCES `transaction` (`Transaction_id`);
-
---
 -- Constraints for table `movie show`
 --
 ALTER TABLE `movie show`
   ADD CONSTRAINT `movie show_FK_1` FOREIGN KEY (`Movie_id`) REFERENCES `movie` (`Movie_id`);
+
+--
+-- Constraints for table `theatre`
+--
+ALTER TABLE `theatre`
+  ADD CONSTRAINT `theatre_ibfk_1` FOREIGN KEY (`Screen_id`) REFERENCES `screen` (`Screen_id`);
 
 --
 -- Constraints for table `tickets`
@@ -338,8 +309,8 @@ ALTER TABLE `tickets`
 -- Constraints for table `transaction`
 --
 ALTER TABLE `transaction`
-  ADD CONSTRAINT `transaction_FK_1` FOREIGN KEY (`Customer_id`) REFERENCES `customer` (`Customer_id`),
-  ADD CONSTRAINT `transaction_FK_2` FOREIGN KEY (`Ticket_no`) REFERENCES `tickets` (`Ticket_id`);
+  ADD CONSTRAINT `transaction_FK_2` FOREIGN KEY (`Ticket_no`) REFERENCES `tickets` (`Ticket_id`),
+  ADD CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`User_id`) REFERENCES `user` (`User_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
