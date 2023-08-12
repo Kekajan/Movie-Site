@@ -20,8 +20,8 @@
                         <ul>
                             <li><a href="#">about us</a></li>
                             <li><a href="#">our services</a></li>
-                            <li><a href="#">privacy policiy</a></li>
-                            <li><a href="#">affiliate program</a></li>
+                            <li><a href="#">privacy polciy</a></li>
+                           
                         </ul>
                     </div>                   
                     <div class="footer-col">
@@ -29,21 +29,19 @@
                         <h4>Online booking</h4>
                         <ul>
                             <li><a href="#">new movies</a></li>
-                            <li><a href="#">upcoming movies</a></li>
-                            <li><a href="#">popular cinemas</a></li>
-                            <li><a href="#">simply booking</a></li>
-                            <li><a href="#">24 hours services</a></li>
+                            <li><a href="#">Booking</a></li>
+                            <li><a href="#">Canceling</a></li>
                         </ul>
                     </div>
                     </div>
                     <div class="footer-col">
-                        <h4>get help</h4>
+                        <h4>Contact us</h4>
                         <ul>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Booking</a></li>
-                            <li><a href="#">Canceling</a></li>
-                            <li><a href="#">details</a></li>
-                            <li><a href="#">payment options</a></li>
+                            
+                            <li><a href="#">No. 14, Passara Road, Badulla.</a></li>
+                            <li><a href="#">+940552365789</a></li>
+                            <li><a href="#">info@cinephile.com</a></li>
+                            
                         </ul>
                     </div>
                     <div class="footer-col">
