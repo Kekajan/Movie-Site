@@ -1,3 +1,38 @@
+<?php
+session_start();
+include 'config.php';
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['User_email'];
+    $password = $_POST['User_pwd'];
+
+    // Assuming you have a database connection in $pdo
+    try {
+        $stmt = $pdo->prepare("SELECT * FROM user WHERE User_email = :email");
+        $stmt->execute(['email' => $email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user && password_verify($password, $user['User_pwd'])) {
+            $_SESSION['user_id'] = $user['User_id'];
+            $_SESSION['user_type'] = $user['User_type'];
+
+            if ($user['User_type'] === 'Admin') {
+                header('Location: Admin.php');
+                exit;
+            } else {
+                header('Location: index.php');
+                exit;
+            }
+        } else {
+            $error_message = 'Invalid email or password';
+        }
+    } catch (PDOException $e) {
+        $error_message = 'Error fetching user details: ' . $e->getMessage();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,23 +48,26 @@
         <div class="box form-box">
             
             <header>Login</header>
-            <form action="" method="post">
-                <div class="field input">
-                    <label for="email">Email or username  </label>
-                    <input type="text" name="email" id="email" autocomplete="off" required>
+            <form action="" method="POST">
+    <?php if (isset($error_message)) { ?>
+        <p><?php echo $error_message; ?></p>
+    <?php } ?>
+    <div class="field input">
+                    <label for="User_email">Email</label>
+                    <input type="email" name="User_email" id="User_email" autocomplete="off" required>
                 </div>
 
                 <div class="field input">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" autocomplete="off" required>
+                    <label for="User_pwd">Password</label>
+                    <input type="password" name="User_pwd" id="User_pwd" autocomplete="off" required>
                 </div>
 
                 <div class="field">
                     
-                    <input type="submit" class="btn btn--primary outline-none btn btn-outline-warning" name="submit" value="Login" required>
+                    <input type="submit" class="btn btn--primary outline-none btn btn-outline-warning"  name="submit" value="Login" required >
                 </div>
                 <div class="links">
-                    Don't have account? <a href="register.php">Sign Up Now</a>
+                    Don't have account? <a href="register.php">Register Now</a>
                 </div>
             </form>
         </div>
