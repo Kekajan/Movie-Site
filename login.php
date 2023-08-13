@@ -1,13 +1,17 @@
 <?php
 session_start();
-include 'config.php';
+require './classes/DbConnector.php';
 
+use classes\DbConnector;
+
+// Create a new database connection instance
+$dbConnector = new DbConnector();
+$pdo = $dbConnector->getConnection(); // Change the method name to getConnection
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['User_email'];
     $password = $_POST['User_pwd'];
 
-    // Assuming you have a database connection in $pdo
     try {
         $stmt = $pdo->prepare("SELECT * FROM user WHERE User_email = :email");
         $stmt->execute(['email' => $email]);
@@ -18,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_type'] = $user['User_type'];
 
             if ($user['User_type'] === 'Admin') {
-                header('Location: Admin.php');
+                header('Location: theateradmin.php');
                 exit;
             } else {
                 header('Location: index.php');
@@ -32,6 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
+<!-- ... rest of your HTML code ... -->
+
+<!-- ... rest of your HTML code ... -->
 
 <!DOCTYPE html>
 <html lang="en">

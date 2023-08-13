@@ -1,35 +1,50 @@
 <?php
+// Include the DbConnector class
+require './classes/DbConnector.php';
 
-include 'config.php';
+use classes\DbConnector;
+
+// Create a new instance of DbConnector
+$dbConnector = new DbConnector();
+
+// Get the PDO connection
+$pdo = $dbConnector->getConnection();
 
 if(isset($_POST['submit'])){
 
-   $fname = mysqli_real_escape_string($conn, $_POST['User_fname']);
-   $lname = mysqli_real_escape_string($conn, $_POST['User_lname']);
-   $email = mysqli_real_escape_string($conn, $_POST['User_email']);
-   $dob = mysqli_real_escape_string($conn, $_POST['User_dob']);
-   $contactNo = mysqli_real_escape_string($conn, $_POST['User_contactno']);
-   $uname = mysqli_real_escape_string($conn, $_POST['User_username']);
-   $pass = password_hash($_POST['User_pwd'], PASSWORD_DEFAULT);
-   $user_type = $_POST['User_type'];
+  $fname = $_POST['User_fname'];
+$lname = $_POST['User_lname'];
+$email = $_POST['User_email'];
+$dob = $_POST['User_dob'];
+$contactNo = $_POST['User_contactno'];
+$uname = $_POST['User_username'];
+$pass = password_hash($_POST['User_pwd'], PASSWORD_DEFAULT);
+$user_type = $_POST['User_type'];
 
-$select = "SELECT User_fname, User_lname, User_email, User_dob, User_contactno, User_username, User_pwd, User_type FROM user WHERE User_email = ? && User_pwd = ?";
-$stmt = mysqli_prepare($conn, $select);
-mysqli_stmt_bind_param($stmt, "ss", $email, $pass);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
 
-if(mysqli_num_rows($result) > 0) {
-   $error[] = 'user already exists!';
+$insert = "INSERT INTO user (User_fname, User_lname, User_email, User_dob, User_contactno, User_username, User_pwd, User_type)"
+. " VALUES(:fname, :lname, :email, :dob, :contactNo, :uname, :pass, :user_type)";
+
+$stmt = $pdo->prepare($insert);
+$stmt->bindParam(':fname', $fname);
+$stmt->bindParam(':lname', $lname);
+$stmt->bindParam(':email', $email);
+$stmt->bindParam(':dob', $dob);
+$stmt->bindParam(':contactNo', $contactNo);
+$stmt->bindParam(':uname', $uname);
+$stmt->bindParam(':pass', $pass);
+$stmt->bindParam(':user_type', $user_type);
+
+if ($stmt->execute()) {
+    // Successfully inserted, redirect to login.php
+    header('Location: Login.php');
+    exit; // Make sure to exit after redirecting
 } else {
-         $insert = "INSERT INTO user (User_fname, User_lname, User_email, User_dob, User_contactno, User_username, User_pwd, User_type)"
-. " VALUES('$fname','$lname','$email','$dob','$contactNo','$uname','$pass','$user_type')";
+    // Handle insertion failure
+    echo 'Error inserting data into the database.';
+}
 
 
-
-         mysqli_query($conn, $insert);
-         header('location:Login.php');
-      }
 }
 
 ?>

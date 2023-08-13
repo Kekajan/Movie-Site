@@ -22,7 +22,7 @@
         <p>Welcome to our movie site! We are passionate film enthusiasts dedicated to providing you with the ultimate cinematic experience.
           Our mission is to bring the magic of the silver screen right to your fingertips.Whether you're a casual moviegoer or a die-hard cinephile, our platform is designed to cater to all your entertainment needs.
         </p>
-        <button class="cta=button fw-bolder">Learn More</button>
+        <button class="btn btn--primary outline-none btn btn-outline-warning" href="ourteam.php">Learn More</button>
       </div>
       <div class="hero-image">
         <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bW92aWVzfGVufDB8fDB8fHww&auto=format&fit=crop&w=900&q=60">
